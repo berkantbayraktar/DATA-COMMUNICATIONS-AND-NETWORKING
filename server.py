@@ -1,8 +1,11 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*- 
+
 #echo server program
 import socket
 
-HOST = '' # IPv4 Address of Server
-PORT = 50007  # PORT
+HOST = '127.0.0.1' # IPv4 Address of Server
+PORT = 19071  # PORT
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)    
 s.bind((HOST, PORT))
