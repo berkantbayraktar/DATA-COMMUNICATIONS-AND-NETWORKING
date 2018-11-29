@@ -11,9 +11,9 @@ conn,addr = s.accept()
 print 'Client is connected with address: ',addr 
 while 1:
     data = conn.recv(1024)
-    if not data: 
-        break
-    conn.sendall(data)   
+    print 'received from client',repr(data)
+    if data:
+        conn.sendall(data)   
 conn.close()  
 
 
