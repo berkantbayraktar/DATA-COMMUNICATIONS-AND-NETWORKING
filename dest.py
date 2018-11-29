@@ -8,7 +8,7 @@ class ThreadedUDPRequestHandler(SocketServer.BaseRequestHandler):
         socket = self.request[1]
         current_thread = threading.current_thread()
         print("{}: client: {}, wrote: {}".format(current_thread.name, self.client_address, data))
-        reply = {sd
+        reply = {
             "message": "ACK",
             "timestamp": str(time.time())
         }
