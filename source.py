@@ -18,7 +18,6 @@ while 1:
         "message" : message,
         "timestamp": str(time.time())
     }
-    time.sleep(10)
     if data:
         s.send(json.dumps(data)) # turn json to string and send
 
