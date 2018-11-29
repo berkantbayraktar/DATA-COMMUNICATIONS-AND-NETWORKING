@@ -10,9 +10,9 @@ PORT = 19070
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.connect((HOST,PORT))
 
-message = sys.argv[1]
-s.sendall(message)
-
-recv_msg = s.recv(1024)
+while 1:
+    message = raw_input('message: ')
+    if message:
+        s.send(message)
 
 s.close()

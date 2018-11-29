@@ -7,17 +7,14 @@ import socket
 HOST = '127.0.0.1' # IPv4 Address of Server
 PORT = 19071  # PORT
 
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)    
-s.bind((HOST, PORT))
-s.listen(1)
-conn,addr = s.accept()
-print 'Client is connected with address: ',addr 
+udp_sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM) 
+udp_sock.bind((HOST, PORT))
+
 while 1:
-    data = conn.recv(1024)
-    print 'received from client',repr(data)
+    data = udp_sock.recvfrom(1024)
     if data:
-        conn.sendall(data)   
-conn.close()  
+        print 'router r1 get the message ' ,repr(data)
+
 
 
 
