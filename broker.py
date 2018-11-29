@@ -22,13 +22,13 @@ udp_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 while 1 : 
     
     data = conn.recv(1024)
+
     if data : 
-        print 'received from client',repr(data)
+        print("received from client"),repr(data)
         rand = randint(0, 1)
         if rand == 1 : 
             udp_socket.sendto(data,(router_ip,udp1_port))
         else :
-
             udp_socket.sendto(data,(router_ip,udp2_port))
 
 

@@ -3,7 +3,8 @@
 
 import socket
 from threading import Thread
-
+import time
+import json
 
 class myThread(Thread): #Thread class 
 
@@ -23,7 +24,10 @@ class myThread(Thread): #Thread class
             while 1:
                 self.data,self.addr = self.r1_udp_sock.recvfrom(1024)
                 if self.data:
-                    print 'destination got the message from r1 ' ,repr(self.data)
+                    dest_received_time = json.loads(self.data)['timestamp'] # timestamp of the message
+                    message = json.loads(self.data)['message'] # actual message from the server
+                    print("Sent at :{}".format(str(time.time())))
+                    print("Received at destination at:{}".format(dest_received_time))
 
         else:   #r2
 
@@ -32,7 +36,10 @@ class myThread(Thread): #Thread class
             while 1:
                 self.data,self.addr = self.r2_udp_sock.recvfrom(1024)
                 if self.data:
-                    print 'destination got the message from r2 ' ,repr(self.data)
+                    dest_received_time = json.loads(self.data)['timestamp'] # timestamp of the message
+                    message = json.loads(self.data)['message'] # actual message from the server
+                    print("Sent at :{}".format(str(time.time())))
+                    print("Received at destination at:{}".format(dest_received_time))
 
 
 
