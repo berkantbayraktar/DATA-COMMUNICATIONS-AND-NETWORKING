@@ -20,5 +20,7 @@ while 1:
     }
     if data:
         s.send(json.dumps(data)) # turn json to string and send
+        rcv_data = s.recv(1024)
+        print 'received back from broker',repr(rcv_data)
 
 s.close()
