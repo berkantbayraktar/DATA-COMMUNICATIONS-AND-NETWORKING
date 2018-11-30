@@ -12,7 +12,7 @@ PORT = 25574
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.connect((HOST,PORT))
 
-f = open("./demofile.txt","r")
+f = open("./demofile_light.txt","r")
 
 while 1:
     message = f.read(724)
