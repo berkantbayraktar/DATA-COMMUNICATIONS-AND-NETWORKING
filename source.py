@@ -30,4 +30,5 @@ while 1:
         rcv_data = s.recv(1024)
         print(string_data)
         
+
 s.close()
