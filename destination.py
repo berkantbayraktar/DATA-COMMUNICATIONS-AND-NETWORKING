@@ -26,6 +26,7 @@ class myThread(Thread): #Thread class
                 if self.data:
                     dest_received_time = json.loads(self.data)['timestamp'] # timestamp of the message
                     message = json.loads(self.data)['message'] # actual message from the server
+                    f.write(message)
                     print("Sent at :{}".format(str(time.time())))
                     print("Received at destination at:{}".format(dest_received_time))
 
@@ -38,6 +39,7 @@ class myThread(Thread): #Thread class
                 if self.data:
                     dest_received_time = json.loads(self.data)['timestamp'] # timestamp of the message
                     message = json.loads(self.data)['message'] # actual message from the server
+                    f.write(message)
                     print("Sent at :{}".format(str(time.time())))
                     print("Received at destination at:{}".format(dest_received_time))
 
@@ -47,6 +49,7 @@ class myThread(Thread): #Thread class
 
 if __name__ == '__main__': 
 
+    f = open("output.txt","wa+")
     Thread_r1 = myThread('127.0.0.1', 19073)
     
     Thread_r2 = myThread('127.0.0.1', 19074)

@@ -26,7 +26,7 @@ while 1 :
     if data : 
         print("received from client"),repr(data)
         rand = randint(0, 1)
-        ack = 'aldim panpa'
+        sack = 'aldim panpa'
         conn.sendall(ack)
         if rand == 1 : 
             udp_socket.sendto(data,(router_ip,udp1_port))

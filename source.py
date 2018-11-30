@@ -12,8 +12,13 @@ PORT = 19070
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.connect((HOST,PORT))
 
+f = open("demofile.txt","r")
+
 while 1:
-    message = raw_input("message: ")
+    message = f.read(500)
+    if message == "":
+    	break
+
     data = {
         "message" : message,
         "timestamp": str(time.time())
