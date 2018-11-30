@@ -12,20 +12,18 @@ PORT = 19070
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.connect((HOST,PORT))
 
-f = open("demofile.txt","r")
+f = open("./demofile.txt","r")
 
-while 1:
-    message = f.read(500)
-    if message == "":
-    	break
-
+for message in f:
     data = {
         "message" : message,
         "timestamp": str(time.time())
     }
     if data:
-        s.send(json.dumps(data)) # turn json to string and send
+        json_data = json.dumps(data)
+        s.send(json_data) # turn json to string and send
         rcv_data = s.recv(1024)
-        print 'received back from broker',repr(rcv_data)
+        print (json.loads(json_data)["timestamp"])
+        
 
 s.close()
