@@ -24,10 +24,10 @@ while 1 :
     data = conn.recv(1024)
 
     if data : 
-        print("Broker received from client"),repr(data)
+        print("received from client"),repr(data)
         rand = randint(0, 1)
-        #ack = 'aldim panpa'
-        #conn.sendall(ack)
+        ack = 'aldim panpa'
+        conn.sendall(ack)
         if rand == 1 : 
             udp_socket.sendto(data,(router_ip,udp1_port))
         else :

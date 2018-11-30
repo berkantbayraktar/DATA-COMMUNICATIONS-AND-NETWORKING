@@ -24,28 +24,7 @@ class myThread(Thread): #Thread class
             while 1:
                 self.data,self.addr = self.r1_udp_sock.recvfrom(1024)
                 if self.data:
-                    #print(self.data)
-                    self.parsed_data = json.loads(self.data)
-                    self.received_time = self.parsed_data["timestamp"]
-                    self.message = self.parsed_data["message"]
-                    #print("Sent at : ", self.received_time)
-                    #print("Received at destination :", time.time())
-                    #dest_received_time = json.loads(self.data)['timestamp'] # timestamp of the message
-                    #self.message = json.loads(self.data)['message'] # actual message from the server
-                    #print("Sent at :{}".format(str(time.time())))
-                    #print("Received at destination at:{}".format(dest_received_time))
-                    print("Dest received message : " + self.message + "\n")
-        else:   #r2
-
-            self.r2_udp_sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-            self.r2_udp_sock.bind((self.HOST, self.PORT))
-            while 1:
-                self.data,self.addr = self.r2_udp_sock.recvfrom(1024)
-                if self.data:
-                    #print(self.data)
-                    self.parsed_data = json.loads(self.data)
-                    self.received_time = self.parsed_data["timestamp"]
-                    self.message = self.parsed_data["message"]
+                    print(self.data)
                     #self.received_time = self.parsed_data["timestamp"]
                     #self.message = self.parsed_data["message"]
                     #print("Sent at : ", self.received_time)
@@ -54,7 +33,24 @@ class myThread(Thread): #Thread class
                     #self.message = json.loads(self.data)['message'] # actual message from the server
                     #print("Sent at :{}".format(str(time.time())))
                     #print("Received at destination at:{}".format(dest_received_time))
-                    print("Dest received message : " + self.message + "\n")
+                    print self.data
+        else:   #r2
+
+            self.r2_udp_sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+            self.r2_udp_sock.bind((self.HOST, self.PORT))
+            while 1:
+                self.data,self.addr = self.r2_udp_sock.recvfrom(1024)
+                if self.data:
+                    print(self.data)
+                    #self.received_time = self.parsed_data["timestamp"]
+                    #self.message = self.parsed_data["message"]
+                    #print("Sent at : ", self.received_time)
+                    #print("Received at destination :", time.time())
+                    #dest_received_time = json.loads(self.data)['timestamp'] # timestamp of the message
+                    #self.message = json.loads(self.data)['message'] # actual message from the server
+                    #print("Sent at :{}".format(str(time.time())))
+                    #print("Received at destination at:{}".format(dest_received_time))
+                    print self.data
 
 
 
