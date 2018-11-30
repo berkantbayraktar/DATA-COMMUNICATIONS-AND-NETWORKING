@@ -16,7 +16,7 @@ class myThread(Thread): #Thread class
 	    self.PORT = PORT
     
     def run(self):
-        if(self.PORT == 19073):  # r1
+        if(self.PORT == 25572):  # r1
             self.r1_udp_sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
             self.r1_udp_sock.bind((self.HOST, self.PORT))
 
