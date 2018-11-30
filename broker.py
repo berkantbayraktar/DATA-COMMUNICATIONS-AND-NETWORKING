@@ -9,8 +9,8 @@ broker_ip = '10.10.1.2'
 router_ip_1 = '10.10.2.2'
 router_ip_2 = '10.10.4.2'
 tcp_port = 25574
-udp1_port = 25572
-udp2_port = 25573
+udp1_port = 25570
+udp2_port = 25570
 
 
 tcp_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
