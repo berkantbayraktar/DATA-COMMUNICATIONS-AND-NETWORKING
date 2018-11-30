@@ -7,7 +7,7 @@ import time
 import json
 
 HOST = '10.10.1.2'
-PORT = 25570   
+PORT = 25574   
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.connect((HOST,PORT))
