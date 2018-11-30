@@ -14,20 +14,22 @@ s.connect((HOST,PORT))
 
 f = open("./demofile.txt","r")
 
-while True:
-    message = f.read(500)
-    if message == '':
+while 1:
+    message = f.read(724)
+    if(len(message) == 0):
         break
+        
     data = {
         "message" : message,
         "timestamp": str(time.time())
     }
+    #a = {"timestamp": str(time.time())} computed size 280
     if data:
-        # turn json to string and send
-        json_data = json.dumps(data)
-        s.send(json_data) 
+        string_data = json.dumps(data)
+        s.send(string_data) # turn json to string and send
         #rcv_data = s.recv(1024)
-        print ("Sent" + json_data)
+        print(string_data)
+        
 
 s.shutdown(socket.SHUT_RDWR)
 s.close()
