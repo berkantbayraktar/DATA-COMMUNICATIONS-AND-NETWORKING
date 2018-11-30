@@ -52,9 +52,9 @@ class myThread(Thread): #Thread class
 
 if __name__ == '__main__': 
 
-    Thread_r1 = myThread('127.0.0.1', 19073)
+    Thread_r1 = myThread('10.10.2.2', 25572)
     
-    Thread_r2 = myThread('127.0.0.1', 19074)
+    Thread_r2 = myThread('10.10.4.2', 25573)
 
 # Start running the threads
 	
