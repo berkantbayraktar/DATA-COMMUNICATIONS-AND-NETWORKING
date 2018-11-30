@@ -28,7 +28,7 @@ class myThread(Thread): #Thread class
                     self.message = json.loads(self.data)['message'] # actual message from the server
                     #print("Sent at :{}".format(str(time.time())))
                     #print("Received at destination at:{}".format(self.dest_received_time))
-                    print(self.src_send_time - time.time())
+                    print('end-to-end delay:',self.src_send_time - time.time())
                  
                     
         else:   #r2
@@ -43,7 +43,7 @@ class myThread(Thread): #Thread class
                     self.message = json.loads(self.data)['message'] # actual message from the server
                     #print("Sent at :{}".format(str(time.time())))
                     #print("Received at destination at:{}".format(self.dest_received_time))
-                    print(self.src_send_time - time.time())
+                    print('end-to-end delay:',self.src_send_time - time.time())
         
                     
 
