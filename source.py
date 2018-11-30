@@ -14,16 +14,21 @@ s.connect((HOST,PORT))
 
 f = open("./demofile.txt","r")
 
-for message in f:
+while 1:
+    message = f.read(724)
+    if(len(message) == 0):
+        break
+        
     data = {
         "message" : message,
         "timestamp": str(time.time())
     }
+    #a = {"timestamp": str(time.time())} computed size 280
     if data:
-        json_data = json.dumps(data)
-        s.send(json_data) # turn json to string and send
+        string_data = json.dumps(data)
+        s.send(string_data) # turn json to string and send
         rcv_data = s.recv(1024)
-        print (json.loads(json_data)["timestamp"])
+        print(string_data)
         
 
 s.close()
