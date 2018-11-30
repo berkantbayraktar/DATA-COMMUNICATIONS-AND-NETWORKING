@@ -17,22 +17,22 @@ class myThread(Thread): #Thread class
     
     def run(self):
         if(self.PORT == 19073):  # r1
-
             self.r1_udp_sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
             self.r1_udp_sock.bind((self.HOST, self.PORT))
 
             while 1:
                 self.data,self.addr = self.r1_udp_sock.recvfrom(1024)
                 if self.data:
-                   
-                    
+ 
                     self.dest_received_time = json.loads(self.data)['timestamp'] # timestamp of the message
                     self.message = json.loads(self.data)['message'] # actual message from the server
-                    print("Sent at :{}".format(str(time.time())))
-                    print("Received at destination at:{}".format(dest_received_time))
+                    #print("Sent at :{}".format(str(time.time())))
+                    #print("Received at destination at:{}".format(self.dest_received_time))
+                    print(self.message)
+                 
                     
         else:   #r2
-
+   
             self.r2_udp_sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
             self.r2_udp_sock.bind((self.HOST, self.PORT))
             while 1:
@@ -41,8 +41,10 @@ class myThread(Thread): #Thread class
                    
                     self.dest_received_time = json.loads(self.data)['timestamp'] # timestamp of the message
                     self.message = json.loads(self.data)['message'] # actual message from the server
-                    print("Sent at :{}".format(str(time.time())))
-                    print("Received at destination at:{}".format(dest_received_time))
+                    #print("Sent at :{}".format(str(time.time())))
+                    #print("Received at destination at:{}".format(self.dest_received_time))
+                    print(self.message)
+        
                     
 
 
