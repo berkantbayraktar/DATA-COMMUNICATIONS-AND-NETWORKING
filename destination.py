@@ -24,11 +24,11 @@ class myThread(Thread): #Thread class
                 self.data,self.addr = self.r1_udp_sock.recvfrom(1024)
                 if self.data:
  
-                    self.dest_received_time = json.loads(self.data)['timestamp'] # timestamp of the message
+                    self.src_send_time = json.loads(self.data)['timestamp'] # timestamp of the message
                     self.message = json.loads(self.data)['message'] # actual message from the server
                     #print("Sent at :{}".format(str(time.time())))
                     #print("Received at destination at:{}".format(self.dest_received_time))
-                    print(self.message)
+                    print(self.src_send_time - time.time())
                  
                     
         else:   #r2
@@ -39,11 +39,11 @@ class myThread(Thread): #Thread class
                 self.data,self.addr = self.r2_udp_sock.recvfrom(1024)
                 if self.data:
                    
-                    self.dest_received_time = json.loads(self.data)['timestamp'] # timestamp of the message
+                    self.src_send_time = json.loads(self.data)['timestamp'] # timestamp of the message
                     self.message = json.loads(self.data)['message'] # actual message from the server
                     #print("Sent at :{}".format(str(time.time())))
                     #print("Received at destination at:{}".format(self.dest_received_time))
-                    print(self.message)
+                    print(self.src_send_time - time.time())
         
                     
 
