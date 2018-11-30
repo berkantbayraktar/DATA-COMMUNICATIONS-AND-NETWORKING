@@ -5,11 +5,12 @@ import socket
 from random import randint
 
 
-broker_ip = '127.0.0.1'
-router_ip = '127.0.0.1'
-tcp_port = 19070
-udp1_port = 19071
-udp2_port = 19072
+broker_ip = '10.10.1.2'
+router_ip_1 = '10.10.2.2'
+router_ip_2 = '10.10.4.2'
+tcp_port = 25570
+udp1_port = 25572
+udp2_port = 25573
 
 
 tcp_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -29,8 +30,8 @@ while 1 :
         ack = 'aldim panpa'
         conn.sendall(ack)
         if rand == 1 : 
-            udp_socket.sendto(data,(router_ip,udp1_port))
+            udp_socket.sendto(data,(router_ip_1,udp1_port))
         else :
-            udp_socket.sendto(data,(router_ip,udp2_port))
+            udp_socket.sendto(data,(router_ip_2,udp2_port))
 
 conn.close()  
