@@ -15,14 +15,19 @@ rcv_udp_sock.bind((r2_ip, RCV_PORT))
 
 #create socket for sending to destination
 dst_udp_sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM) 
-
+dst_udp_sock.bind((r2_ip,r2_PORT))
 while 1:
     # receive 1024 byte data from broker
     data,addr = rcv_udp_sock.recvfrom(1024)
     # if data is valid
     if data:
         # send data to destination
+       
         dst_udp_sock.sendto(data,(d_ip,r2_PORT))
+        rcv_msg,rcv_addr = dst_udp_sock.recvfrom(1024)
+        rcv_udp_sock.sendto(rcv_msg,('10.10.1.2',RCV_PORT))
+
+        
         
 
 
