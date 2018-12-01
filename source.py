@@ -19,21 +19,15 @@ f = open("./demofile_light.txt","r")
 
 while 1:
     # read 724 bytes from file
-    message = f.read(724)
+    message = f.read(1024)
     # if end of file break
     if(len(message) == 0):
         break
         
-    # create json object with timestamp and message
-    data = {
-        "message" : message, # 724 byte message from the file
-        "timestamp": str(time.time()) # current time
-    }
-    #a = {"timestamp": str(time.time())} computed size 280
-    if data:
-        string_data = json.dumps(data) # turn json to string
-        s.send(string_data) # send data
-        print(string_data) # print the ack for debugging
+    if message:
+
+        s.send(message) # send data
+        print('message :',message) # print the ack for debugging
         rcv_data = s.recv(1024) # receive ack from broker
         f_rcv_data = float(rcv_data)
         print('dest:', repr(f_rcv_data), 'now:',repr(time.time()), 'difference:', repr(time.time()- f_rcv_data))
