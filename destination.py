@@ -33,6 +33,7 @@ class myThread(Thread): # Thread class
                 self.data,self.addr = r1_udp_sock.recvfrom(1024)
                 # if received data is valid
                 if self.data:
+                    r1_udp_sock.sendto(str(time.time()),('10.10.2.2',self.PORT))
                     self.src_send_time = json.loads(self.data)['timestamp'] # timestamp of the message at source
                     self.message = json.loads(self.data)['message'] # actual message from the source
                     # print time difference i.e. end-to-end delay
@@ -45,6 +46,7 @@ class myThread(Thread): # Thread class
                 self.data,self.addr = r2_udp_sock.recvfrom(1024)
                 # if received data is valid
                 if self.data:  
+                    r1_udp_sock.sendto(str(time.time()),('10.10.4.2',self.PORT))
                     self.src_send_time = json.loads(self.data)['timestamp'] # imestamp of the message at source
                     self.message = json.loads(self.data)['message'] # actual message from the source
                     # print time difference i.e. end-to-end delay

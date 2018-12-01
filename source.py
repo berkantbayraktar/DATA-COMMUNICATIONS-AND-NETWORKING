@@ -33,8 +33,11 @@ while 1:
     if data:
         string_data = json.dumps(data) # turn json to string
         s.send(string_data) # send data
-        rcv_data = s.recv(1024) # receive ack from broker
         print(string_data) # print the ack for debugging
+        rcv_data = s.recv(1024) # receive ack from broker
+        f_rcv_data = float(rcv_data)
+        print('dest:', repr(f_rcv_data), 'now:',repr(time.time()), 'difference:', repr(time.time()- f_rcv_data))
+        
         
 # close tcp socket
 s.close()
