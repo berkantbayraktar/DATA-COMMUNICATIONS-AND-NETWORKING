@@ -29,7 +29,6 @@ while 1 :
 
     #if data is valid
     if data : 
-        print("received from client"),repr(data)
         # pick either 0 or 1 for deciding which router to send
         rand = randint(0, 1)
         ack = 'aldim panpa'

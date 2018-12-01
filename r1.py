@@ -5,7 +5,7 @@ import socket
 
 r1_ip = '10.10.2.2' # router1 ip
 d_ip = '10.10.3.2' # destination ip
-RCV_PORT = 19077  # port number for receving
+RCV_PORT = 19077  # port number for receiving
 r1_PORT = 25572  # port number for sending
 
 # create socket for receiving from broker
