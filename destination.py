@@ -6,23 +6,31 @@ from threading import Thread
 import time
 import json
 
+dest_ip = '10.10.3.2' # IP adddress of the destination node
+r1_port = 25572 # port number for receiving data from r1
+r2_port = 25572 # port number for receiving data from r2
+
+# create and bind socket for receiving data from router1
+r1_udp_sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+r1_udp_sock.bind((dest_ip,r1_port))
+
+# create and bind socket for receiving data from router2
+r2_udp_sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+r2_udp_sock.bind((dest_ip,r2_port))
+
 class myThread(Thread): # Thread class 
 
     #constructor for thread , construct with host and port number
     def __init__(self, HOST, PORT): 
 	    Thread.__init__(self)
 	    self.HOST = HOST
-	    self.PORT = PORT
+	    self.PORT = PORT       
     
     def run(self):
         if(self.PORT == 25572):  # if port number reserved for router1
-            # create and bind socket for receiving data from router1
-            self.r1_udp_sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-            self.r1_udp_sock.bind((self.HOST, self.PORT))
-
             while 1:
                 # receive 1024 byte data from router1
-                self.data,self.addr = self.r1_udp_sock.recvfrom(1024)
+                self.data,self.addr = r1_udp_sock.recvfrom(1024)
                 # if received data is valid
                 if self.data:
                     self.src_send_time = json.loads(self.data)['timestamp'] # timestamp of the message at source
@@ -32,12 +40,9 @@ class myThread(Thread): # Thread class
                  
                     
         else:   #if port number reserved for router2
-            # create and bind socket for receiving data from router2
-            self.r2_udp_sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-            self.r2_udp_sock.bind((self.HOST, self.PORT))
             while 1:
                 # receive 1024 byte data from router2
-                self.data,self.addr = self.r2_udp_sock.recvfrom(1024)
+                self.data,self.addr = r2_udp_sock.recvfrom(1024)
                 # if received data is valid
                 if self.data:  
                     self.src_send_time = json.loads(self.data)['timestamp'] # imestamp of the message at source
