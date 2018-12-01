@@ -6,7 +6,7 @@ import socket
 
 r1_ip = '10.10.2.2'
 d_ip = '10.10.3.2' # IPv4 Address of Server
-RCV_PORT = 25570  # PORT
+RCV_PORT = 19077  # PORT
 r1_PORT = 25572
 
 

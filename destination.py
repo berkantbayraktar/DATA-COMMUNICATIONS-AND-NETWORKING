@@ -18,7 +18,7 @@ class myThread(Thread): #Thread class
     def run(self):
         if(self.PORT == 25572):  # r1
             self.r1_udp_sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-            self.r1_udp_sock.bind(('10.10.3.2', self.PORT))
+            self.r1_udp_sock.bind((self.HOST, self.PORT))
 
             while 1:
                 self.data,self.addr = self.r1_udp_sock.recvfrom(1024)
@@ -34,7 +34,7 @@ class myThread(Thread): #Thread class
         else:   #r2
    
             self.r2_udp_sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-            self.r2_udp_sock.bind(('10.10.3.2', self.PORT))
+            self.r2_udp_sock.bind((self.HOST, self.PORT))
             while 1:
                 self.data,self.addr = self.r2_udp_sock.recvfrom(1024)
                 if self.data:
@@ -52,9 +52,9 @@ class myThread(Thread): #Thread class
 
 if __name__ == '__main__': 
 
-    Thread_r1 = myThread('10.10.2.2', 25572)
+    Thread_r1 = myThread('10.10.3.2', 25572)
     
-    Thread_r2 = myThread('10.10.4.2', 25573)
+    Thread_r2 = myThread('10.10.3.2', 25573)
 
 # Start running the threads
 	
