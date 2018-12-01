@@ -8,7 +8,7 @@ import json
 
 dest_ip = '10.10.3.2' # IP adddress of the destination node
 r1_port = 25572 # port number for receiving data from r1
-r2_port = 25572 # port number for receiving data from r2
+r2_port = 25573 # port number for receiving data from r2
 
 # create and bind socket for receiving data from router1
 r1_udp_sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -58,10 +58,10 @@ class myThread(Thread): # Thread class
 if __name__ == '__main__': 
 
     # create thread for router1 socket
-    Thread_r1 = myThread('10.10.3.2', 25572)
+    Thread_r1 = myThread(dest_ip, r1_port)
     
     # create thread for router2 socket
-    Thread_r2 = myThread('10.10.3.2', 25573)
+    Thread_r2 = myThread(dest_ip, r2_port)
 
 # Start running the threads
 	
