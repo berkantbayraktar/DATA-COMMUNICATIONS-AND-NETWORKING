@@ -38,7 +38,7 @@ while 1:
         # print the end-to-end delay
         print('dest:', repr(f_rcv_data), 'now:',repr(current_time), 'difference:', repr(current_time- f_rcv_data))# print the end-to-end delay
         # calculate avg end-to-end delay  
-        print('avg end-to-end delay for', repr(i), 'packets: '   ,repr(total_time/i))
+        print('avg end-to-end delay for', repr(i), ' packets: '   ,repr(total_time/i))
         
 # close tcp socket
 s.close()
