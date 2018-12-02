@@ -1,7 +1,7 @@
 #!/bin/bash
 
 directory= ~/Desktop/ceng435/ceng435--term-project/
-host=pc3.instageni.rnet.missouri.edu
+host=pc5.instageni.rnet.missouri.edu
 user=berkantb
 
 
