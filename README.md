@@ -1,4 +1,5 @@
 İlker Ayçiçek - 2098770
+
 Berkant Bayraktar- 2098796
 
 We have 5 different python files. Namely,
@@ -24,9 +25,9 @@ copies corresponding files to target vm.
 You can change the vm addresses, target directory and local directory easily
 in the script file.
 
-directory : directory of the file that you want to copy (e.g. ~/Desktop)
-host : target hostname {e.g. pc3.instageni.rnet.missouri.edu}
-user : username that is defined to you by the vm machine (e.g. e2098770)
+* directory : directory of the file that you want to copy (e.g. ~/Desktop)
+* host : target hostname {e.g. pc3.instageni.rnet.missouri.edu}
+* user : username that is defined to you by the vm machine (e.g. e2098770)
 
 After uploading files, you can connect to machines via 
 `run_remote_files.sh` script.
@@ -41,8 +42,8 @@ connects to machines in 5 different terminal screen.
 You can change the ports of the machines that you want to connect by changing
 25571 .. 25574 part of the for loop.
 
-host : hostname of the target machine
-user : username that is defined to you by the vm machine (e.g. e2098770, berkantb etc.)
+* host : hostname of the target machine
+* user : username that is defined to you by the vm machine (e.g. e2098770, berkantb etc.)
 
 After connecting, you can run python executables on each different terminal
 (vm machine).
@@ -76,53 +77,53 @@ Find the IP that you are using while connecting through your socket to vm.
 Interface name of the corresponding IP is what you need.
 We used following commands to emulate delays:
 
-For router1-----destination link. In destination machine, run:
-To change :
+* For router1-----destination link. In destination machine, run:
+* To change :
 ```
     sudo tc qdisc change dev eth2 root netem delay 1ms 5ms distribution normal
     sudo tc qdisc change dev eth2 root netem delay 20ms 5ms distribution normal
     sudo tc qdisc change dev eth2 root netem delay 60ms 5ms distribution normal
 ```
-To add :
+* To add :
 ```
     sudo tc qdisc add dev eth2 root netem delay 1ms 5ms distribution normal
     sudo tc qdisc add dev eth2 root netem delay 20ms 5ms distribution normal
     sudo tc qdisc add dev eth2 root netem delay 60ms 5ms distribution normal
 ```
-For router2----destination link. In destination machine, run:
-To change :
+* For router2----destination link. In destination machine, run:
+* To change :
 ```
     sudo tc qdisc change dev eth1 root netem delay 1ms 5ms distribution normal
     sudo tc qdisc change dev eth1 root netem delay 20ms 5ms distribution normal
     sudo tc qdisc change dev eth1 root netem delay 60ms 5ms distribution normal
 ```
-To add:
+* To add:
 ```
     sudo tc qdisc add dev eth1 root netem delay 1ms 5ms distribution normal
     sudo tc qdisc add dev eth1 root netem delay 20ms 5ms distribution normal
     sudo tc qdisc add dev eth1 root netem delay 60ms 5ms distribution normal
 ```
-For router2----broker link In router2 machine, run:
-To change :
+* For router2----broker link In router2 machine, run:
+* To change :
 ```
     sudo tc qdisc change dev eth2 root netem delay 1ms 5ms distribution normal
     sudo tc qdisc change dev eth2 root netem delay 20ms 5ms distribution normal
     sudo tc qdisc change dev eth2 root netem delay 60ms 5ms distribution normal
 ```
-To add:
+* To add:
 ```
     sudo tc qdisc add dev eth2 root netem delay 1ms 5ms distribution normal
     sudo tc qdisc add dev eth2 root netem delay 20ms 5ms distribution normal
     sudo tc qdisc add dev eth2 root netem delay 60ms 5ms distribution normal
 ```
-For router1----broker link. In router1 machine, run:
-To change:
+* For router1----broker link. In router1 machine, run:
+* To change:
 ```
     sudo tc qdisc change dev eth1 root netem delay 1ms 5ms distribution normal
     sudo tc qdisc change dev eth1 root netem delay 20ms 5ms distribution normal
     sudo tc qdisc change dev eth1 root netem delay 60ms 5ms distribution normal
 ```
-TO add:
+* To add:
 ```
     sudo tc qdisc add dev eth1 root netem delay 1ms 5ms distribution normal
     sudo tc qdisc add dev eth1 root netem delay 20ms 5ms distribution normal
