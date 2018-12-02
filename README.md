@@ -2,6 +2,7 @@
 
 Berkant Bayraktar- 2098796
 
+
 We have 5 different python files. Namely,
 
 * destination.py
@@ -13,49 +14,36 @@ We have 5 different python files. Namely,
 Each of them is  uploaded different vm machines with respect to their name.
 (i.e. destination into vm machine `d` etc.)
 
-You can run our  script `transfer_files.sh` to upload files to vm machines.
+First , we run ssh-agent to add ssh public key :
+```
+    eval `ssh-agent -s`
+    ssh-add ~/.ssh/id_geni_ssh_rsa 
+```
+After these commands, we enter our passphrase. Then use scp to upload files 
+to remote virtual machines by :
 
 ```
-    sh transfer_files.sh
+    scp -P 25571 <path-to-your-file> berkantb@pc5.instageni.rnet.missouri.edu
+    :/users/berkantb
 ```
-This script uses scp to upload files. It first runs `ssh-agent` to simplify
-public key process and asks your passphrase.After passphrase is entered, it 
-copies corresponding files to target vm.
 
-You can change the vm addresses, target directory and local directory easily
-in the script file.
-
-* directory : directory of the file that you want to copy (e.g. ~/Desktop)
+* <path-to-your-file>: directory of the file that you want to copy
 * host : target hostname {e.g. pc5.instageni.rnet.missouri.edu}
-* user : username that is defined to you by the vm machine (e.g. e2098770)
+* user : GENI username (e.g. berkantb)
 
-After uploading files, you can connect to machines via 
-`connect_remote.sh` script.
-
-```
-    sh run_remote_files.sh
-```
-This script uses ssh for connection. It first runs `ssh-agent` to simplify
-public key process and asks your passphrase. After passphrase is entered, it 
-connects to machines in 5 different terminal screen.
-
-You can change the ports of the machines that you want to connect by changing
-25571 .. 25574 part of the for loop.
-
-* host : hostname of the target machine
-* user : username that is defined to you by the vm machine (e.g. e2098770, berkantb etc.)
-
-After connecting, you can run python executables on each different terminal
-(vm machine).
+After we upload our files to each machine, we connect to machines via ssh.
 
 ```
-    python destination.py
-    python r1.py
-    python r2.py
-    python broker.py
-    python source.py
+   ssh -i <path-to-your-private-key-file> berkantb@pc5.instageni.rnet.missouri.edu
+    -p <port-number-of-the-machine>
 ```
-We run our scripts and connected to machines. For time syncronization between
+* <path-to-your-private-key-file> : directory of the private key for GENI 
+* host : target hostname {e.g. pc5.instageni.rnet.missouri.edu}
+* user : GENI username (e.g. berkantb)
+* <port-number-of-the-machine> : port number of the machine
+
+
+We connected to machines.Then, for time syncronization between
 machines we use ntp on each individual machine:
 
 ```
@@ -68,94 +56,103 @@ We can check if it is syncronized or not by :
 ```
 timedatectl status
 ```
+After synchronizing,run our socket programs on each machine:
+```
+    python destination.py
+    python r1.py
+    python r2.py
+    python broker.py
+    python source.py
+```
 
 In our `source.py`, we take input from our predefined file. It automatically,
-parses file into chunks and send them one by one. You can find average 
-end-to-end delay of sent packets, in the standard output of `source` node.
+parses file into chunks and send them one by one. You can find end-to-end delay
+of each packets and average end-to-end delay of these packets, 
+in the standard output of `source` node.
 
-For adding/changing network emulating delays, following command adds 1ms+-5ms 
-normal distribution network emulating delay to the eth0 interface.
+After finding correct internet interfaces of nodes by ```ifconfig``` command,
 
-```
-    sudo tc qdisc change dev eth0 root netem delay 1ms 5ms distribution normal
-```
+For experiment 1:
 
-You can find required interface name (e.g. eth0) to change emulate delay by:
+* We added 1ms+-5ms network emulating delay to the eth0 and eth1 interface 
+    for r1 and r2 links of destination node.
 
-```
-    ifconfig
-```
-
-Find the IP that you are using while connecting through your socket to vm. 
-Interface name of the corresponding IP is what you need.
-We used following commands to emulate delays:
-
-* For router1-----destination link. In destination machine, run:
-    * To change :
-```
-    sudo tc qdisc change dev eth2 root netem delay 1ms 5ms distribution normal
-    sudo tc qdisc change dev eth2 root netem delay 20ms 5ms distribution normal
-    sudo tc qdisc change dev eth2 root netem delay 60ms 5ms distribution normal
-```
-
-    * To add :
-
+* For r1 link :
 ```
     sudo tc qdisc add dev eth2 root netem delay 1ms 5ms distribution normal
-    sudo tc qdisc add dev eth2 root netem delay 20ms 5ms distribution normal
-    sudo tc qdisc add dev eth2 root netem delay 60ms 5ms distribution normal
 ```
-
- For router2----destination link. In destination machine, run:
-   
-    * To change :
-
-```
-    sudo tc qdisc change dev eth1 root netem delay 1ms 5ms distribution normal
-    sudo tc qdisc change dev eth1 root netem delay 20ms 5ms distribution normal
-    sudo tc qdisc change dev eth1 root netem delay 60ms 5ms distribution normal
-```
-
-    * To add:
-
+* For r2 link:
 ```
     sudo tc qdisc add dev eth1 root netem delay 1ms 5ms distribution normal
-    sudo tc qdisc add dev eth1 root netem delay 20ms 5ms distribution normal
-    sudo tc qdisc add dev eth1 root netem delay 60ms 5ms distribution normal
-```
-
- For router2----broker link. In router2 machine, run:
-  
-    * To change :
-```
-    sudo tc qdisc change dev eth1 root netem delay 1ms 5ms distribution normal
-    sudo tc qdisc change dev eth1 root netem delay 20ms 5ms distribution normal
-    sudo tc qdisc change dev eth1 root netem delay 60ms 5ms distribution normal
 ```
  
-    * To add:
 
+* We added 1ms+-5ms network emulating delay to the eth0 and eth1 interface 
+    for r1 and r2 links of broker node.
+
+* For r1 link :
 ```
     sudo tc qdisc add dev eth1 root netem delay 1ms 5ms distribution normal
-    sudo tc qdisc add dev eth1 root netem delay 20ms 5ms distribution normal
-    sudo tc qdisc add dev eth1 root netem delay 60ms 5ms distribution normal
+```
+* For r2 link:
+```
+    sudo tc qdisc add dev eth1 root netem delay 1ms 5ms distribution normal
 ```
 
- For router1----broker link. In router1 machine, run:
- 
-    * To change:
+For experiment 2:
 
+* We changed to 20ms+-5ms network emulating delay to the eth0 and eth1 interface 
+    for r1 and r2 links of destination node.
+
+* For r1 link :
+```
+    sudo tc qdisc change dev eth2 root netem delay 1ms 5ms distribution normal
+```
+* For r2 link:
 ```
     sudo tc qdisc change dev eth1 root netem delay 1ms 5ms distribution normal
-    sudo tc qdisc change dev eth1 root netem delay 20ms 5ms distribution normal
-    sudo tc qdisc change dev eth1 root netem delay 60ms 5ms distribution normal
+```
+ 
+
+* We changed to 20ms+-5ms network emulating delay to the eth0 and eth1 interface 
+    for r1 and r2 links of broker node.
+
+* For r1 link :
+```
+    sudo tc qdisc change dev eth1 root netem delay 1ms 5ms distribution normal
+```
+* For r2 link:
+```
+    sudo tc qdisc change dev eth1 root netem delay 1ms 5ms distribution normal
 ```
 
-    * To add:
+For experiment 3:
 
-```
-    sudo tc qdisc add dev eth1 root netem delay 1ms 5ms distribution normal
-    sudo tc qdisc add dev eth1 root netem delay 20ms 5ms distribution normal
-    sudo tc qdisc add dev eth1 root netem delay 60ms 5ms distribution normal
-```
+* We changed to 20ms+-5ms network emulating delay to the eth0 and eth1 interface 
+    for r1 and r2 links of destination node.
 
+* For r1 link :
+```
+    sudo tc qdisc change dev eth2 root netem delay 1ms 5ms distribution normal
+```
+* For r2 link:
+```
+    sudo tc qdisc change dev eth1 root netem delay 1ms 5ms distribution normal
+```
+ 
+
+* We changed to 20ms+-5ms network emulating delay to the eth0 and eth1 interface 
+    for r1 and r2 links of broker node.
+
+* For r1 link :
+```
+    sudo tc qdisc change dev eth1 root netem delay 1ms 5ms distribution normal
+```
+* For r2 link:
+```
+    sudo tc qdisc change dev eth1 root netem delay 1ms 5ms distribution normal
+```
+___
+
+Then, for each experiment we calculated average end-to-end delay for 154 packets
+for each  epxeriment.
