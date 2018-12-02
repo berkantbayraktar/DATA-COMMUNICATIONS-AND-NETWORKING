@@ -9,7 +9,7 @@ d_ip = '10.10.3.2' # destination ip
 RCV_PORT = 25570  # port number for receiving
 r2_PORT = 25573   # port number for sending
 
-# create socket for receiving from broker
+# create and bind socket for receiving from broker
 rcv_udp_sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM) 
 rcv_udp_sock.bind((r2_ip, RCV_PORT))
 
