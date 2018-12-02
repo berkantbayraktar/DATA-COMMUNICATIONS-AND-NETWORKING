@@ -43,19 +43,19 @@ After we upload our files to each machine, we connect to machines via ssh.
 
 
 We connected to machines.Then, for time syncronization between
-machines we use ntp on each individual machine:
+machines we use ntp on source and destination machines:
 
 ```
 sudo service ntp stop
 sudo ntpdate 1.ro.pool.ntp.org
 
 ```
-
-We can check if it is syncronized or not by :
+We checked if it is syncronized or not by :
 ```
 timedatectl status
 ```
-After synchronizing,run our socket programs on each machine:
+You don't need to synchronize again. We already did.It is enough to
+do it once. After synchronizing,we ran our socket programs on each machine:
 ```
     python destination.py
     python r1.py
@@ -127,7 +127,7 @@ For experiment 2:
 
 For experiment 3:
 
-* We changed to 20ms+-5ms network emulating delay to the eth0 and eth1 interface 
+* We changed to 60ms+-5ms network emulating delay to the eth0 and eth1 interface 
     for r1 and r2 links of destination node.
 
 * For r1 link :
@@ -140,7 +140,7 @@ For experiment 3:
 ```
  
 
-* We changed to 20ms+-5ms network emulating delay to the eth0 and eth1 interface 
+* We changed to 60ms+-5ms network emulating delay to the eth0 and eth1 interface 
     for r1 and r2 links of broker node.
 
 * For r1 link :
