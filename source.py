@@ -17,22 +17,28 @@ s.connect((HOST,PORT))
 # open file to be sent over the network
 f = open("./demofile_light.txt","r")
 
+#set counter
+i = 0
+total_time = 0
 while 1:
     # read 1024 bytes from file
     message = f.read(1024)
     # if end of file break
-
     if(len(message) == 0):
         break
+    else:
+        i += 1
     # if message is valid
     if message:
-
         s.send(message) # send data
         rcv_data = s.recv(1024) # receive destination reply from broker
         f_rcv_data = float(rcv_data) # convert time string to float
+        current_time = time.time() #calculate current time
+        total_time += current_time- f_rcv_data  # add end-to-end delay to total time.
         # print the end-to-end delay
-        print('dest:', repr(f_rcv_data), 'now:',repr(time.time()), 'difference:', repr(time.time()- f_rcv_data))# print thee end-to-end delay
-        
+        print('dest:', repr(f_rcv_data), 'now:',repr(current_time), 'difference:', repr(current_time- f_rcv_data))# print thee end-to-end delay
+        # calculate avg end-to-end delay  
+        print('avg end-to-end delay for', repr(i), 'packets: '   ,repr(total_time/i))
         
 # close tcp socket
 s.close()
