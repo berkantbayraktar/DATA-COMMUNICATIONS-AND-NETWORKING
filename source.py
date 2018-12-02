@@ -18,19 +18,20 @@ s.connect((HOST,PORT))
 f = open("./demofile_light.txt","r")
 
 while 1:
-    # read 724 bytes from file
+    # read 1024 bytes from file
     message = f.read(1024)
     # if end of file break
+
     if(len(message) == 0):
         break
-        
+    # if message is valid
     if message:
 
         s.send(message) # send data
-        print('message :',message) # print the ack for debugging
-        rcv_data = s.recv(1024) # receive ack from broker
-        f_rcv_data = float(rcv_data)
-        print('dest:', repr(f_rcv_data), 'now:',repr(time.time()), 'difference:', repr(time.time()- f_rcv_data))
+        rcv_data = s.recv(1024) # receive destination reply from broker
+        f_rcv_data = float(rcv_data) # convert time string to float
+        # print the end-to-end delay
+        print('dest:', repr(f_rcv_data), 'now:',repr(time.time()), 'difference:', repr(time.time()- f_rcv_data))# print thee end-to-end delay
         
         
 # close tcp socket

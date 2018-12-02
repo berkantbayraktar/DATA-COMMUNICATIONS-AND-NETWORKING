@@ -34,17 +34,22 @@ while 1 :
     if data : 
         # pick either 0 or 1 for deciding which router to send
         rand = randint(0, 1)
-         # send ack message to source
         # if random number is 1 send to router1 
         if rand == 1 : 
+            # send message to router1
             udp_socket_r1.sendto(data,(router_ip_1,udp1_port))
+            # receive destination reply from router1 
             rcv_msg_r1,addr_r1 = udp_socket_r1.recvfrom(1024)
+            # send reply to source
             conn.sendall(rcv_msg_r1)
             
         # otherwise send to router2
         else :
+             # send message to router2
             udp_socket_r2.sendto(data,(router_ip_2,udp2_port))
+            # receive destination reply from router2
             rcv_msg_r2,addr_r2 = udp_socket_r2.recvfrom(1024)
+             # send reply to source
             conn.sendall(rcv_msg_r2)
             
 

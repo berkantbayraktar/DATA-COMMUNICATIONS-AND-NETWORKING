@@ -21,8 +21,10 @@ while 1:
     # if data is valid
     if data:
         # send data to destination
-        dst_udp_sock.sendto(data,(d_ip,r1_PORT))    
+        dst_udp_sock.sendto(data,(d_ip,r1_PORT))   
+        # receive destination reply 
         rcv_msg,rcv_addr = dst_udp_sock.recvfrom(1024)
+        # send destination reply to broker
         rcv_udp_sock.sendto(rcv_msg,('10.10.1.2',RCV_PORT))
 
         
