@@ -35,10 +35,10 @@ while 1:
         f_rcv_data = float(rcv_data) # convert time string to float
         current_time = time.time() # calculate current time
         total_time += current_time-f_rcv_data  # add end-to-end delay to total time.
-        # print the end-to-end delay
-        print('dest:', repr(f_rcv_data), 'now:',repr(current_time), 'difference:', repr(current_time- f_rcv_data))# print the end-to-end delay
-        # calculate avg end-to-end delay  
-        print('avg end-to-end delay for', repr(i), 'packets: '   ,repr(total_time/i))
+        # print the end-to-end delay in seconds
+        print('sent at :', repr(f_rcv_data), 'received at:',repr(current_time), 'difference:', repr(current_time- f_rcv_data))# print the end-to-end delay
+        # calculate avg end-to-end delay in seconds 
+        print('avg end-to-end delay for', repr(i), ' packets: '   ,repr(total_time/i))
         
 # close tcp socket
 s.close()
