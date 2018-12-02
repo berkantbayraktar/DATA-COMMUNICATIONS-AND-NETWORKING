@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-host=pc3.instageni.rnet.missouri.edu
+host=pc5.instageni.rnet.missouri.edu
 user=e2098770
 
 
