@@ -26,11 +26,11 @@ You can change the vm addresses, target directory and local directory easily
 in the script file.
 
 * directory : directory of the file that you want to copy (e.g. ~/Desktop)
-* host : target hostname {e.g. pc3.instageni.rnet.missouri.edu}
+* host : target hostname {e.g. pc5.instageni.rnet.missouri.edu}
 * user : username that is defined to you by the vm machine (e.g. e2098770)
 
 After uploading files, you can connect to machines via 
-`run_remote_files.sh` script.
+`connect_remote.sh` script.
 
 ```
     sh run_remote_files.sh
@@ -64,9 +64,14 @@ sudo ntpdate 1.ro.pool.ntp.org
 
 ```
 
+We can check if it is syncronized or not by :
+```
+timedatectl status
+```
+
 In our `source.py`, we take input from our predefined file. It automatically,
-parses file into chunks and send them one by one. You can find end-to-end delay,
-in the standard output of `source` node.
+parses file into chunks and send them one by one. You can find average 
+end-to-end delay of sent packets, in the standard output of `source` node.
 
 For adding/changing network emulating delays, following command adds 1ms+-5ms 
 normal distribution network emulating delay to the eth0 interface.
@@ -119,21 +124,21 @@ We used following commands to emulate delays:
     sudo tc qdisc add dev eth1 root netem delay 60ms 5ms distribution normal
 ```
 
- For router2----broker link In router2 machine, run:
+ For router2----broker link. In router2 machine, run:
   
     * To change :
 ```
-    sudo tc qdisc change dev eth2 root netem delay 1ms 5ms distribution normal
-    sudo tc qdisc change dev eth2 root netem delay 20ms 5ms distribution normal
-    sudo tc qdisc change dev eth2 root netem delay 60ms 5ms distribution normal
+    sudo tc qdisc change dev eth1 root netem delay 1ms 5ms distribution normal
+    sudo tc qdisc change dev eth1 root netem delay 20ms 5ms distribution normal
+    sudo tc qdisc change dev eth1 root netem delay 60ms 5ms distribution normal
 ```
  
     * To add:
 
 ```
-    sudo tc qdisc add dev eth2 root netem delay 1ms 5ms distribution normal
-    sudo tc qdisc add dev eth2 root netem delay 20ms 5ms distribution normal
-    sudo tc qdisc add dev eth2 root netem delay 60ms 5ms distribution normal
+    sudo tc qdisc add dev eth1 root netem delay 1ms 5ms distribution normal
+    sudo tc qdisc add dev eth1 root netem delay 20ms 5ms distribution normal
+    sudo tc qdisc add dev eth1 root netem delay 60ms 5ms distribution normal
 ```
 
  For router1----broker link. In router1 machine, run:
