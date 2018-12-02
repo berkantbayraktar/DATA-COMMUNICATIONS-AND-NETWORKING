@@ -55,10 +55,18 @@ After connecting, you can run python executables on each different terminal
     python broker.py
     python source.py
 ```
-We run our scripts and connected to machines.
+We run our scripts and connected to machines. For time syncronization between
+machines we use ntp on each individual machine:
+
+```
+sudo service ntp stop
+sudo ntpdate 1.ro.pool.ntp.org
+
+```
+
 In our `source.py`, we take input from our predefined file. It automatically,
 parses file into chunks and send them one by one. You can find end-to-end delay,
-in the standard output of source node.
+in the standard output of `source` node.
 
 For adding/changing network emulating delays, following command adds 1ms+-5ms 
 normal distribution network emulating delay to the eth0 interface.
