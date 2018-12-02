@@ -78,52 +78,68 @@ Interface name of the corresponding IP is what you need.
 We used following commands to emulate delays:
 
 * For router1-----destination link. In destination machine, run:
-* To change :
+    * To change :
 ```
     sudo tc qdisc change dev eth2 root netem delay 1ms 5ms distribution normal
     sudo tc qdisc change dev eth2 root netem delay 20ms 5ms distribution normal
     sudo tc qdisc change dev eth2 root netem delay 60ms 5ms distribution normal
 ```
-* To add :
+
+    * To add :
+
 ```
     sudo tc qdisc add dev eth2 root netem delay 1ms 5ms distribution normal
     sudo tc qdisc add dev eth2 root netem delay 20ms 5ms distribution normal
     sudo tc qdisc add dev eth2 root netem delay 60ms 5ms distribution normal
 ```
-* For router2----destination link. In destination machine, run:
-* To change :
+
+ For router2----destination link. In destination machine, run:
+   
+    * To change :
+
 ```
     sudo tc qdisc change dev eth1 root netem delay 1ms 5ms distribution normal
     sudo tc qdisc change dev eth1 root netem delay 20ms 5ms distribution normal
     sudo tc qdisc change dev eth1 root netem delay 60ms 5ms distribution normal
 ```
-* To add:
+
+    * To add:
+
 ```
     sudo tc qdisc add dev eth1 root netem delay 1ms 5ms distribution normal
     sudo tc qdisc add dev eth1 root netem delay 20ms 5ms distribution normal
     sudo tc qdisc add dev eth1 root netem delay 60ms 5ms distribution normal
 ```
-* For router2----broker link In router2 machine, run:
-* To change :
+
+ For router2----broker link In router2 machine, run:
+  
+    * To change :
 ```
     sudo tc qdisc change dev eth2 root netem delay 1ms 5ms distribution normal
     sudo tc qdisc change dev eth2 root netem delay 20ms 5ms distribution normal
     sudo tc qdisc change dev eth2 root netem delay 60ms 5ms distribution normal
 ```
-* To add:
+ 
+    * To add:
+
 ```
     sudo tc qdisc add dev eth2 root netem delay 1ms 5ms distribution normal
     sudo tc qdisc add dev eth2 root netem delay 20ms 5ms distribution normal
     sudo tc qdisc add dev eth2 root netem delay 60ms 5ms distribution normal
 ```
-* For router1----broker link. In router1 machine, run:
-* To change:
+
+ For router1----broker link. In router1 machine, run:
+ 
+    * To change:
+
 ```
     sudo tc qdisc change dev eth1 root netem delay 1ms 5ms distribution normal
     sudo tc qdisc change dev eth1 root netem delay 20ms 5ms distribution normal
     sudo tc qdisc change dev eth1 root netem delay 60ms 5ms distribution normal
 ```
-* To add:
+
+    * To add:
+
 ```
     sudo tc qdisc add dev eth1 root netem delay 1ms 5ms distribution normal
     sudo tc qdisc add dev eth1 root netem delay 20ms 5ms distribution normal
