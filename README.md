@@ -23,7 +23,7 @@ After these commands, we enter our passphrase. Then use scp to upload files
 to remote virtual machines by :
 
 ```
-    scp -P 25571 <path-to-your-file> berkantb@pc5.instageni.rnet.missouri.edu
+    scp -P <port-number-of-the-machine> <path-to-your-file> berkantb@pc5.instageni.rnet.missouri.edu
     :/users/berkantb
 ```
 
@@ -40,7 +40,6 @@ After we upload our files to each machine, we connect to machines via ssh.
 * <path-to-your-private-key-file> : directory of the private key for GENI 
 * host : target hostname {e.g. pc5.instageni.rnet.missouri.edu}
 * user : GENI username (e.g. berkantb)
-* <port-number-of-the-machine> : port number of the machine
 
 
 We connected to machines.Then, for time syncronization between
