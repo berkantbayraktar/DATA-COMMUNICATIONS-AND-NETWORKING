@@ -76,11 +76,11 @@ For experiment 1:
 * We added 1ms+-5ms network emulating delay to the eth0 and eth1 interface 
     for r1 and r2 links of destination node.
 
-* For r1 link :
+* For r1-destination link , run this at destination node :
 ```
     sudo tc qdisc add dev eth2 root netem delay 1ms 5ms distribution normal
 ```
-* For r2 link:
+* For r2-destination link, run this at destination node:
 ```
     sudo tc qdisc add dev eth1 root netem delay 1ms 5ms distribution normal
 ```
@@ -89,11 +89,11 @@ For experiment 1:
 * We added 1ms+-5ms network emulating delay to the eth0 and eth1 interface 
     for r1 and r2 links of broker node.
 
-* For r1 link :
+* For r1-broker link, run this at r1 node :
 ```
     sudo tc qdisc add dev eth1 root netem delay 1ms 5ms distribution normal
 ```
-* For r2 link:
+* For r2 link, run this at r2 node:
 ```
     sudo tc qdisc add dev eth1 root netem delay 1ms 5ms distribution normal
 ```
@@ -103,11 +103,11 @@ For experiment 2:
 * We changed to 20ms+-5ms network emulating delay to the eth0 and eth1 interface 
     for r1 and r2 links of destination node.
 
-* For r1 link :
+* For r1-destination link, run this at destination :
 ```
     sudo tc qdisc change dev eth2 root netem delay 20ms 5ms distribution normal
 ```
-* For r2 link:
+* For r2-destination link, run this at destination:
 ```
     sudo tc qdisc change dev eth1 root netem delay 20ms 5ms distribution normal
 ```
@@ -116,11 +116,11 @@ For experiment 2:
 * We changed to 20ms+-5ms network emulating delay to the eth0 and eth1 interface 
     for r1 and r2 links of broker node.
 
-* For r1 link :
+* For r1-broker link, run this at r1 :
 ```
     sudo tc qdisc change dev eth1 root netem delay 20ms 5ms distribution normal
 ```
-* For r2 link:
+* For r2-broker link, run this at r2 :
 ```
     sudo tc qdisc change dev eth1 root netem delay 20ms 5ms distribution normal
 ```
@@ -130,11 +130,11 @@ For experiment 3:
 * We changed to 60ms+-5ms network emulating delay to the eth0 and eth1 interface 
     for r1 and r2 links of destination node.
 
-* For r1 link :
+* For r1-destination link, run this at destination node :
 ```
     sudo tc qdisc change dev eth2 root netem delay 60ms 5ms distribution normal
 ```
-* For r2 link:
+* For r2-destination link, run this at destination node:
 ```
     sudo tc qdisc change dev eth1 root netem delay 60ms 5ms distribution normal
 ```
@@ -143,11 +143,11 @@ For experiment 3:
 * We changed to 60ms+-5ms network emulating delay to the eth0 and eth1 interface 
     for r1 and r2 links of broker node.
 
-* For r1 link :
+* For r1-broker link, run this at r1 node :
 ```
     sudo tc qdisc change dev eth1 root netem delay 60ms 5ms distribution normal
 ```
-* For r2 link:
+* For r2-broker link, run this at r2 node:
 ```
     sudo tc qdisc change dev eth1 root netem delay 60ms 5ms distribution normal
 ```
