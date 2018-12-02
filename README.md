@@ -154,4 +154,4 @@ For experiment 3:
 ___
 
 Then, for each experiment we calculated average end-to-end delay for 154 packets
-for each  epxeriment.
+for each  experiment.
