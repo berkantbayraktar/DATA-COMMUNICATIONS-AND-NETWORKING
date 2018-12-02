@@ -105,11 +105,11 @@ For experiment 2:
 
 * For r1 link :
 ```
-    sudo tc qdisc change dev eth2 root netem delay 1ms 5ms distribution normal
+    sudo tc qdisc change dev eth2 root netem delay 20ms 5ms distribution normal
 ```
 * For r2 link:
 ```
-    sudo tc qdisc change dev eth1 root netem delay 1ms 5ms distribution normal
+    sudo tc qdisc change dev eth1 root netem delay 20ms 5ms distribution normal
 ```
  
 
@@ -118,11 +118,11 @@ For experiment 2:
 
 * For r1 link :
 ```
-    sudo tc qdisc change dev eth1 root netem delay 1ms 5ms distribution normal
+    sudo tc qdisc change dev eth1 root netem delay 20ms 5ms distribution normal
 ```
 * For r2 link:
 ```
-    sudo tc qdisc change dev eth1 root netem delay 1ms 5ms distribution normal
+    sudo tc qdisc change dev eth1 root netem delay 20ms 5ms distribution normal
 ```
 
 For experiment 3:
@@ -132,11 +132,11 @@ For experiment 3:
 
 * For r1 link :
 ```
-    sudo tc qdisc change dev eth2 root netem delay 1ms 5ms distribution normal
+    sudo tc qdisc change dev eth2 root netem delay 60ms 5ms distribution normal
 ```
 * For r2 link:
 ```
-    sudo tc qdisc change dev eth1 root netem delay 1ms 5ms distribution normal
+    sudo tc qdisc change dev eth1 root netem delay 60ms 5ms distribution normal
 ```
  
 
@@ -145,11 +145,11 @@ For experiment 3:
 
 * For r1 link :
 ```
-    sudo tc qdisc change dev eth1 root netem delay 1ms 5ms distribution normal
+    sudo tc qdisc change dev eth1 root netem delay 60ms 5ms distribution normal
 ```
 * For r2 link:
 ```
-    sudo tc qdisc change dev eth1 root netem delay 1ms 5ms distribution normal
+    sudo tc qdisc change dev eth1 root netem delay 60ms 5ms distribution normal
 ```
 ___
 
