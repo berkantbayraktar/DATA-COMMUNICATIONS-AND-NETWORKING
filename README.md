@@ -27,7 +27,7 @@ to remote virtual machines by :
     :/users/berkantb
 ```
 
-* <path-to-your-file>: directory of the file that you want to copy
+* path-to-your-file: directory of the file that you want to copy
 * host : target hostname {e.g. pc5.instageni.rnet.missouri.edu}
 * user : GENI username (e.g. berkantb)
 
@@ -37,7 +37,7 @@ After we upload our files to each machine, we connect to machines via ssh.
    ssh -i <path-to-your-private-key-file> berkantb@pc5.instageni.rnet.missouri.edu
     -p <port-number-of-the-machine>
 ```
-* <path-to-your-private-key-file> : directory of the private key for GENI 
+* path-to-your-private-key-file : directory of the private key for GENI 
 * host : target hostname {e.g. pc5.instageni.rnet.missouri.edu}
 * user : GENI username (e.g. berkantb)
 
